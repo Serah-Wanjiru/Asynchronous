@@ -27,3 +27,32 @@ async function info() {
   }
 }
 info();
+
+//You have an asynchronous function performTask() that returns a Promise. 
+//The Promise resolves if the task is successful and rejects if there's an 
+//error. Write a function that calls performTask() and logs a custom success
+ //message if the task is successful, and a custom error message if there's an 
+ //error.
+
+
+function performTask() {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const x = Math.random();
+      if (x < 0.5) {
+        resolve();
+      } else {
+        reject(new Error("Task failed!"));
+      }
+    }, 2000);
+  });
+}
+async function handleTask() {
+  try {
+    await performTask();
+    console.log("Task completed!");
+  } catch (error) {
+    console.error("Error occured:", error);
+  }
+};
+handleTask() 
